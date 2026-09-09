@@ -1,4 +1,4 @@
-# STITCH simulation and analysis files
+# Simulation and analysis files
 
 This repository contains the simulation code and the machine-readable analysis files used in the finite-size study of the fermion-coupled Hodge model.
 
@@ -10,25 +10,6 @@ The Python programs in the repository root implement the model, umbrella samplin
 
 `data/diagnostics/` contains JSON diagnostics and MBAR summaries for the production ensembles. `data/processed/` contains the tabular output used for plotting, finite-size analysis, and uncertainty estimates. These files include the BF5 and BF10 bootstrap products that were supplied with the project data.
 
-## Python environment
-
-A clean environment can be created with
-
-```bash
-python -m venv .venv
-source .venv/bin/activate
-python -m pip install --upgrade pip
-pip install -r requirements.txt
-```
-
-When several umbrella windows are run at the same time, one BLAS thread per process is usually the safer choice:
-
-```bash
-export OMP_NUM_THREADS=1
-export MKL_NUM_THREADS=1
-export OPENBLAS_NUM_THREADS=1
-export NUMEXPR_NUM_THREADS=1
-```
 
 ## Local-update validation
 
@@ -74,9 +55,3 @@ python analyze_mbar.py 'runs/T0038/L8/*.npz' --out result_T0038_L8.json
 ```
 
 The publication postprocessing used here is collected in `run_one_stats.sh`. It checks the expected number of trajectories, writes the overlap and leave-one-window-out diagnostics, and produces the BF5 and BF10 bootstrap tables.
-
-## Archived data
-
-The processed tables are the compact, machine-readable record behind the statistical analysis. The JSON files preserve the corresponding overlap and MBAR diagnostics. The raw production trajectories are not part of this GitHub package because they were not contained in the uploaded source archives used to assemble it.
-
-A checksum list for all files in this release is provided in `MANIFEST.sha256`.
